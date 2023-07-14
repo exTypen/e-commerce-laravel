@@ -1,53 +1,116 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- Container wrapper -->
+<div class="top-header top-header-dark">
     <div class="container">
-        <!-- Navbar brand -->
-        <a class="navbar-brand me-2" href="https://mdbgo.com/">
-            <img
-                src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-                height="16"
-                alt="MDB Logo"
-                loading="lazy"
-                style="margin-top: -1px;"
-            />
-        </a>
-
-        <!-- Toggle button -->
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarButtonsExample"
-            aria-controls="navbarButtonsExample"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarButtonsExample">
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Dashboard</a>
-                </li>
-            </ul>
-            <!-- Left links -->
-
-            <div class="d-flex align-items-center">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-shopping-cart"></i>
-                    Sepetim
-                </a>
-                <a type="button" class="btn btn-link px-3 me-2">
-                    Giriş Yap
-                </a>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="header-contact">
+                    <ul>
+                        <li>Welcome to Our store Multikart</li>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 - 7890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 text-end">
+                <ul class="header-dropdown">
+                    <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart"
+                                                               aria-hidden="true"></i></a>
+                    </li>
+                    <li class="onhover-dropdown mobile-account"> <i class="fa fa-user"
+                                                                    aria-hidden="true"></i>
+                        Hesabım </li>
+                </ul>
             </div>
         </div>
-        <!-- Collapsible wrapper -->
     </div>
-    <!-- Container wrapper -->
-</nav>
-<!-- Navbar -->
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="main-menu">
+                <div class="menu-left">
+                    <div class="navbar d-block d-xl-none">
+                        <a href="javascript:void(0)">
+                            <div class="bar-style" id="toggle-sidebar-res"><i class="fa fa-bars sidebar-bar"
+                                                                              aria-hidden="true"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="brand-logo">
+                        <a href="/"><img src="../assets/images/logos/uzmanlogo.png"
+                                         class="img-fluid" alt=""></a>
+                    </div>
+                </div>
+                <div>
+                    <form class="form_search" role="form">
+                        <input id="query search-autocomplete" type="search"
+                               placeholder="Ürün Arama"
+                               class="nav-search nav-search-field" aria-expanded="true">
+                        <button type="submit" name="nav-submit-button" class="btn-search">
+                            <i class="ti-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="menu-right pull-right">
+                    <nav class="text-start">
+                        <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                    </nav>
+                    <div>
+                        <div class="icon-nav d-none d-sm-block">
+                            <ul>
+                                <li class="onhover-div d-xl-none d-inline-block mobile-search">
+                                    <div><img src="../assets/images/icon/search.png"
+                                              class="img-fluid blur-up lazyload" alt=""> <i
+                                            class="ti-search"></i></div>
+                                </li>
+                                <li class="onhover-div mobile-setting">
+                                    <div><img src="../assets/images/icon/setting.png"
+                                              class="img-fluid" alt=""> <i
+                                            class="ti-settings"></i></div>
+                                </li>
+                                <li class="onhover-div mobile-cart">
+                                    <div><img src="../assets/images/icon/cart.png"
+                                              class="img-fluid" alt=""> <i
+                                            class="ti-shopping-cart"></i></div>
+                                    <span class="cart_qty_cls">102</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom-part bottom-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-2">
+                <div class="category-menu d-none d-xl-block h-100">
+                    <div class="toggle-sidebar">
+                        <i class="fa fa-bars sidebar-bar"></i>
+                        <h5 class="mb-0">markalar</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-10">
+                <div class="main-nav-center">
+                    <nav class="text-start">
+                        <!-- Sample menu definition -->
+                        <ul class="sm pixelstrap sm-horizontal">
+                            <li>
+                                <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2"
+                                                                         aria-hidden="true"></i></div>
+                            </li>
+                            <li><a href="">Spor Saati</a></li>
+                            <li><a href="">Kulaklık</a></li>
+                            <li><a href="">Hoparlör</a> </li>
+                            <li><a href="">Navigasyon</a> </li>
+                            <li><a href="">Takip Cihazı</a> </li>
+                            <li><a href="">Kamera</a></li>
+                            <li><a href="">IP Telefon</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

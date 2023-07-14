@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('front.home');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::resource('products' , AdminProductController::class);
 });
