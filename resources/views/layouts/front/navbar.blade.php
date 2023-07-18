@@ -4,19 +4,25 @@
             <div class="col-lg-6">
                 <div class="header-contact">
                     <ul>
-                        <li>Welcome to Our store Multikart</li>
-                        <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 - 7890</li>
+                        <li>Uzman Teknoloji'ye Hoş Geldiniz</li>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>Bizi Arayın: 0541 637 51 18</li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-6 text-end">
                 <ul class="header-dropdown">
-                    <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart"
-                                                               aria-hidden="true"></i></a>
+                    <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
                     </li>
-                    <li class="onhover-dropdown mobile-account"> <i class="fa fa-user"
-                                                                    aria-hidden="true"></i>
-                        Hesabım </li>
+                    <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i> Hesabım
+                    <ul class="onhover-show-div">
+                        <li>
+                            <a >Giriş Yap</a>
+                        </li>
+                        <li>
+                            <a>Kayıt Ol</a>
+                        </li>
+                    </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -35,7 +41,7 @@
                         </a>
                     </div>
                     <div class="brand-logo">
-                        <a href="/"><img src="../assets/images/logos/uzmanlogo.png"
+                        <a href="/"><img src="{{asset("assets/front/images/logos/uzmanlogo.png")}}"
                                          class="img-fluid" alt=""></a>
                     </div>
                 </div>
@@ -45,7 +51,7 @@
                                placeholder="Ürün Arama"
                                class="nav-search nav-search-field" aria-expanded="true">
                         <button type="submit" name="nav-submit-button" class="btn-search">
-                            <i class="ti-search"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
                 </div>
@@ -57,17 +63,17 @@
                         <div class="icon-nav d-none d-sm-block">
                             <ul>
                                 <li class="onhover-div d-xl-none d-inline-block mobile-search">
-                                    <div><img src="../assets/images/icon/search.png"
+                                    <div><img src="{{asset("assets/front/images/icon/search.png")}}"
                                               class="img-fluid blur-up lazyload" alt=""> <i
                                             class="ti-search"></i></div>
                                 </li>
                                 <li class="onhover-div mobile-setting">
-                                    <div><img src="../assets/images/icon/setting.png"
+                                    <div><img src="{{asset("assets/front/images/icon/setting.png")}}"
                                               class="img-fluid" alt=""> <i
                                             class="ti-settings"></i></div>
                                 </li>
                                 <li class="onhover-div mobile-cart">
-                                    <div><img src="../assets/images/icon/cart.png"
+                                    <div><img src="{{asset("assets/front/images/icon/cart.png")}}"
                                               class="img-fluid" alt=""> <i
                                             class="ti-shopping-cart"></i></div>
                                     <span class="cart_qty_cls">102</span>

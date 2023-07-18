@@ -1,13 +1,13 @@
 @extends("layouts.admin")
 @section("title")
-    Ürün Ekle
+    {{isset($product) ? 'Ürün Düzenleme' : 'Ürün Ekleme'}}
 @endsection
 @section("header")
-    Ürün Ekle
+    {{isset($product) ? 'Ürün Düzenleme' : 'Ürün Ekleme'}}
 @endsection
 @section("breadcrumb")
     <li class="breadcrumb-item">Ürünler</li>
-    <li class="breadcrumb-item active">Ürün Ekle</li>
+    <li class="breadcrumb-item active">{{isset($product) ? 'Ürün Düzenleme' : 'Ürün Ekleme'}}</li>
 @endsection
 
 @section("content")
@@ -56,8 +56,13 @@
                                 </div>
                             </div>
                             <div class="col-xl-7">
-                                <form class="needs-validation add-product-form" action="{{route('products.store')}}" method="POST">
+                                <form class="needs-validation add-product-form" action="{{isset($product) ? route('products.update' , [$product->id]) : route('products.store')}}" method="POST">
+                                    @if(isset($product))
+                                        @method('PUT')
+                                    @endif
+
                                     @csrf
+
                                     <div class="form">
                                         <div class="form-group mb-3 row">
                                             <label for="validationCustom01"
@@ -90,9 +95,8 @@
                                                    class="col-xl-3 col-sm-4 mb-0">Marka:</label>
                                             <div class="col-xl-8 col-sm-7">
                                                 <select class="form-control digits" id="exampleFormControlSelect2" name="brand_id">
-                            r
                                                     @foreach($brands as $brand)
-                                                        <option value="{{$brand->id}}" selected>{{$brand->name}}</option>
+                                                        <option value="{{$brand->id}}">{{$brand->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -109,7 +113,7 @@
                                             <label class="col-xl-3 col-sm-4 mb-0">Stok:</label>
                                             <fieldset class="qty-box col-xl-9 col-xl-8 col-sm-7">
                                                 <div class="input-group">
-                                                    <input class="touchspin" type="text" value="1" name="stock" @if(isset($product)) value="{{$product->stock}}" @endif>
+                                                    <input class="touchspin" type="text" name="stock" @if(isset($product)) value="{{$product->stock}}" @else value="1"  @endif>
                                                 </div>
                                             </fieldset>
                                         </div>
@@ -126,6 +130,11 @@
                                                 <textarea id="editor1" name="description" cols="10" rows="4">@if(isset($product)) {{$product->description}} @endif</textarea>
                                             </div>
                                             <div class="offset-xl-3 offset-sm-4 mt-4">
+                                                @if ($errors->any())
+                                                    <div class="alert alert-danger">
+                                                        Lütfen bilgileri kontrol edin.
+                                                    </div>
+                                                @endif
                                                 <button type="submit" class="btn btn-primary">Kaydet</button>
                                             </div>
                                         </div>

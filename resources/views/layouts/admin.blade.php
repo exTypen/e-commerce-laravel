@@ -48,8 +48,8 @@
                         <div class="col-lg-6">
                             <ol class="breadcrumb pull-right">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">
-                                        <i data-feather="home"></i>
+                                    <a href="{{route('admin.index')}}">
+                                        <i data-feather="home">asd</i>
                                     </a>
                                 </li>
                                 @yield('breadcrumb')

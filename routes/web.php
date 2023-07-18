@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('front.home');
+    return view('front.index');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('auth.login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('auth.register');
+
 Route::prefix('admin')->group(function () {
-    Route::resource('products' , AdminProductController::class);
+    Route::get('/', function () {
+        return view('admin.index');
+    })->name('admin.index');
+    Route::resource('products' , ProductController::class);
+    Route::resource('categories' , CategoryController::class);
+    Route::resource('brands' , BrandController::class);
 });

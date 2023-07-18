@@ -6,8 +6,7 @@
     Ürün Listesi
 @endsection
 @section('breadcrumb')
-    <li class="breadcrumb-item">Digital</li>
-    <li class="breadcrumb-item active">Product List</li>
+    <li class="breadcrumb-item active">Ürün Listesi</li>
 @endsection
 @section('content')
 
@@ -36,7 +35,7 @@
                                 <th>Stok Kodu</th>
                                 <th>Fiyat</th>
                                 <th>Stok Adeti</th>
-                                <th></th>
+                                <th>İşlemler</th>
                             </tr>
                             </thead>
 
@@ -54,13 +53,19 @@
                                     <td data-field="price">₺{{$product->price}}</td>
                                     <td data-field="stock">{{$product->stock}}</td>
                                     <td>
-                                        <a href="javascript:void(0)">
-                                            <i class="fa fa-edit" title="Edit"></i>
-                                        </a>
-
-                                        <a href="javascript:void(0)">
-                                            <i class="fa fa-trash" title="Delete"></i>
-                                        </a>
+                                        <form id="form-for-edit-route-{{ $product->id }}" action="{{route('products.edit',[$product->id])}}" method="GET">
+                                            @csrf
+                                            <a style="cursor: pointer" onclick="document.getElementById('form-for-edit-route-{{ $product->id }}').submit();">
+                                                <i class="fa fa-edit" title="Düzenle"></i>
+                                            </a>
+                                        </form>
+                                        <form style="cursor: pointer" id="form-for-delete-route-{{ $product->id }}" action="{{route('products.destroy',[$product->id])}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a onclick="if(confirm('Bu ürünü silmek istediğinize emin misiniz?')) { document.getElementById('form-for-delete-route-{{ $product->id }}').submit(); }">
+                                                <i class="fa fa-trash" title="Sil"></i>
+                                            </a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

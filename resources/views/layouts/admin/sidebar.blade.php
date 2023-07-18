@@ -7,93 +7,34 @@
             <li>
                 <a class="sidebar-header" href="index.html">
                     <i data-feather="home"></i>
-                    <span>Dashboard</span>
+                    <span>Ana sayfa</span>
                 </a>
             </li>
 
             <li>
-                <a class="sidebar-header" href="javascript:void(0)">
+                <a class="sidebar-header">
                     <i data-feather="box"></i>
-                    <span>Products</span>
+                    <span>Ürünler</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
 
                 <ul class="sidebar-submenu">
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="{{route('products.index')}}">
                             <i class="fa fa-circle"></i>
-                            <span>Physical</span>
-                            <i class="fa fa-angle-right pull-right"></i>
+                            <span>Ürün Yönetimi</span>
                         </a>
-
-                        <ul class="sidebar-submenu">
-                            <li>
-                                <a href="category.html">
-                                    <i class="fa fa-circle"></i>Category
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="category-sub.html">
-                                    <i class="fa fa-circle"></i>Sub Category</a>
-                            </li>
-
-                            <li>
-                                <a href="product-list.html">
-                                    <i class="fa fa-circle"></i>Product List</a>
-                            </li>
-
-                            <li>
-                                <a href="product-detail.html">
-                                    <i class="fa fa-circle"></i>Product Detail</a>
-                            </li>
-
-                            <li>
-                                <a href="add-product.html">
-                                    <i class="fa fa-circle"></i>Add Product
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="{{route('categories.index')}}">
                             <i class="fa fa-circle"></i>
-                            <span>Digital</span>
-                            <i class="fa fa-angle-right pull-right"></i>
+                            <span>Kategori Yönetimi</span>
                         </a>
-
-                        <ul class="sidebar-submenu">
-                            <li>
-                                <a href="category-digital.html">
-                                    <i class="fa fa-circle"></i>Category
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="category-digitalsub.html">
-                                    <i class="fa fa-circle"></i>Sub Category
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="product-listdigital.html">
-                                    <i class="fa fa-circle"></i>Product List
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="add-digital-product.html">
-                                    <i class="fa fa-circle"></i>Add Product
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-
                     <li>
-                        <a href="product-review.html">
+                        <a href="{{route('brands.index')}}">
                             <i class="fa fa-circle"></i>
-                            <span>product Review</span>
+                            <span>Marka Yönetimi</span>
                         </a>
                     </li>
                 </ul>
@@ -102,7 +43,7 @@
             <li>
                 <a class="sidebar-header" href="javascript:void(0)">
                     <i data-feather="archive"></i>
-                    <span>Orders</span>
+                    <span>Siparişler</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
 

@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="uzmanteknoloji">
+    <meta name="keywords" content="uzmanteknoloji">
+    <meta name="author" content="uzmanteknoloji">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href={{asset("assets/front/bootstrap/dist/css/bootstrap.min.css")}}>
 
@@ -10,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
 
     <!-- Icons -->
-    <link rel="stylesheet" type="text/css" href="{{asset("assets/front/css/vendors/font-awesome.css")}}">
+    <script src="https://kit.fontawesome.com/f2df97ccb6.js" crossorigin="anonymous"></script>
 
     <!--Slick slider css-->
     <link rel="stylesheet" type="text/css" href="{{asset("assets/front/css/vendors/slick.css")}}">
@@ -63,6 +70,23 @@
 <script src="{{asset("assets/front/js/theme-setting.js")}}"></script>
 <script src="{{asset("assets/front/js/script.js")}}"></script>
 <script src="{{asset("assets/front/js/custom-slick-animated.js")}}"></script>
+
+<script>
+    $(window).on('load', function () {
+        setTimeout(function () {
+            $('#exampleModal').modal('show');
+        }, 2500);
+    });
+    feather.replace();
+
+    function openSearch() {
+        document.getElementById("search-overlay").style.display = "block";
+    }
+
+    function closeSearch() {
+        document.getElementById("search-overlay").style.display = "none";
+    }
+</script>
 
 
 @yield("js")
