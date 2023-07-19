@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::get();
-        return view('admin.products.index', compact('products'));
+        return view('admin.product_management.products.index', compact('products'));
     }
 
     /**
@@ -27,7 +28,7 @@ class ProductController extends Controller
     {
         $categories = Category::get();
         $brands = Brand::get();
-        return view('admin.products.product', compact('categories', 'brands'));
+        return view('admin.product_management.products.product', compact('categories', 'brands'));
     }
 
     /**
@@ -35,38 +36,43 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:posts|max:255',
-            'stock_code' => 'required|unique:posts|max:50',
-            'category_id' => 'required|Integer',
-            'brand_id' => 'required|Integer',
-            'price' => 'required|numeric',
-        ]);
-
         $data = $request->except('_token');
         $data['slug'] = Str::slug($data['name']);
-        Product::create($data);
+        $data['price'] = floatval(str_replace(',', '.', $data['price']));
+        $product = Product::create($data);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image_name = time().'.'.$image->extension();
+            $image->move(public_path('images'), $image_name);
+            $product_image = [
+                'image_path' => $image_name,
+                'product_id' => $product->id
+            ];
+            ProductImage::create($product_image);
+        }
+
         return redirect()->route('products.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        $product = Product::find($id);
-        return view('admin.products.show', compact('product'));
+        $product = Product::where('slug', $slug)->first();
+        return view('front.product', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        $product = Product::find($id);
+        $product = Product::where('slug', $slug)->first();
         $categories = Category::get();
         $brands = Brand::get();
-        return view('admin.products.product', compact('product', 'categories', 'brands'));
+        return view('admin.product_management.products.product', compact('product', 'categories', 'brands'));
     }
 
     /**
@@ -76,7 +82,20 @@ class ProductController extends Controller
     {
         $data = $request->except('_token');
         $data['slug'] = Str::slug($data['name']);
+        $data['price'] = floatval(str_replace(',', '.', $data['price']));
         Product::find($id)->update($data);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image_name = time().'.'.$image->extension();
+            $image->move(public_path('images'), $image_name);
+            $product_image = [
+                'image_path' => $image_name,
+                'product_id' => intval($id)
+            ];
+            ProductImage::create($product_image);
+        }
+
         return redirect()->route('products.index');
     }
 
@@ -89,4 +108,5 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index');
     }
+
 }

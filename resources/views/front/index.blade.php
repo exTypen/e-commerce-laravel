@@ -11,6 +11,8 @@
 @endsection
 
 @section("content")
+
+
     <section class="small-section small-slider pt-res-0">
         <div class="container">
             <div class="slider-animate home-slider">
@@ -59,6 +61,9 @@
             </div>
         </div>
     </section>
+
+
+
     <section class="service-w-bg pt-0 tools-service">
         <div class="container">
             <div class="service p-0 ">
@@ -185,30 +190,30 @@
             <div class="row">
                 <div class="col-12">
                     <div class="product-5 product-m no-arrow">
-
-                        <div class="product-box product-wrap">
-                            <div class="img-wrapper">
-                                <div class="front">
-                                    <a href="product-page(no-sidebar).html"><img
-                                            src="../assets/images/electronics/pro/21.jpg"
-                                            class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                        @foreach($products as $product)
+                            <div class="product-box product-wrap">
+                                <div class="img-wrapper">
+                                    <div class="front">
+                                        <a href="{{route('products.show' , [$product->slug])}}" style="cursor: pointer">
+                                            <img src="{{count($product->images) ? asset('images/'.$product->images[0]->image_path) : asset('assets/front/images/default.jpg')}}" class="img-fluid blur-up lazyload bg-img" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="cart-box style-1 rounded-0">
+                                        <button onclick="openCart()" title="Sepete Ekle"><i class="fa-solid fa-cart-shopping"></i></button>
+                                        <a title="İstek Listesine Ekle"><i class="fa-solid fa-heart"></i></a>
+                                    </div>
                                 </div>
-                                <div class="cart-box style-1 rounded-0">
-                                    <button onclick="openCart()" title="Add to cart"><i class="fa-solid fa-cart-shopping"></i></button>
-                                    <a href="javascript:void(0)" title="Add to Wishlist"><i class="fa-solid fa-heart"></i></a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                <div class="product-detail">
+                                    <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                            class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="{{route('products.show' , [$product->slug])}}" style="cursor:pointer;">
+                                        <h6>{{$product->name}}</h6>
+                                    </a>
+                                    <h4>₺{{$product->price}}</h4>
                                 </div>
                             </div>
-                            <div class="product-detail">
-                                <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                </div>
-                                <a href="product-page(no-sidebar).html">
-                                    <h6>Wireless Bluetooth Headphone</h6>
-                                </a>
-                                <h4>$100.20</h4>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

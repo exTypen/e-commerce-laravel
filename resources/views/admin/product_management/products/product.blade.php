@@ -16,53 +16,47 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row product-adding">
-                            <div class="col-xl-5">
-                                <div class="add-product">
-                                    <div class="row">
-                                        <div class="col-xl-9 xl-50 col-sm-6 col-9">
-                                            <img src="{{asset("assets/admin/images/pro3/1.jpg")}}" alt=""
-                                                 class="img-fluid image_zoom_1 blur-up lazyloaded">
-                                        </div>
-                                        <div class="col-xl-3 xl-50 col-sm-6 col-3">
-                                            <ul class="file-upload-product">
-                                                <li>
-                                                    <div class="box-input-file"><input class="upload"
-                                                                                       type="file"><i class="fa fa-plus"></i></div>
-                                                </li>
-                                                <li>
-                                                    <div class="box-input-file"><input class="upload"
-                                                                                       type="file"><i class="fa fa-plus"></i></div>
-                                                </li>
-                                                <li>
-                                                    <div class="box-input-file"><input class="upload"
-                                                                                       type="file"><i class="fa fa-plus"></i></div>
-                                                </li>
-                                                <li>
-                                                    <div class="box-input-file"><input class="upload"
-                                                                                       type="file"><i class="fa fa-plus"></i></div>
-                                                </li>
-                                                <li>
-                                                    <div class="box-input-file"><input class="upload"
-                                                                                       type="file"><i class="fa fa-plus"></i></div>
-                                                </li>
-                                                <li>
-                                                    <div class="box-input-file"><input class="upload"
-                                                                                       type="file"><i class="fa fa-plus"></i></div>
-                                                </li>
-                                            </ul>
+                            <form class="needs-validation add-product-form" action="{{isset($product) ? route('products.update' , [$product->id]) : route('products.store')}}" method="POST" enctype="multipart/form-data">
+                                @if(isset($product))
+                                    @method('PUT')
+                                @endif
+
+                                @csrf
+                                    <div class="row product-adding">
+                                <div class="col-xl-5">
+                                    <div class="add-product">
+                                        <div class="row">
+                                            <div class="col-xl-9 xl-50 col-sm-6 col-9">
+                                                <img src="{{asset("assets/admin/images/pro3/1.jpg")}}" alt=""
+                                                     class="img-fluid image_zoom_1 blur-up lazyloaded">
+                                            </div>
+                                            <div class="col-xl-3 xl-50 col-sm-6 col-3">
+                                                <ul class="file-upload-product">
+                                                    <li>
+                                                        <div class="box-input-file"><input class="upload" type="file" name="image"><i class="fa fa-plus"></i></div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="box-input-file"><input class="upload"
+                                                                                           type="file"><i class="fa fa-plus"></i></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-7">
-                                <form class="needs-validation add-product-form" action="{{isset($product) ? route('products.update' , [$product->id]) : route('products.store')}}" method="POST">
-                                    @if(isset($product))
-                                        @method('PUT')
-                                    @endif
-
-                                    @csrf
-
+                                <div class="col-xl-7">
                                     <div class="form">
                                         <div class="form-group mb-3 row">
                                             <label for="validationCustom01"
@@ -139,8 +133,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                                                                            </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

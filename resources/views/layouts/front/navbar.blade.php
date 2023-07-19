@@ -1,3 +1,4 @@
+<header class="header-style-5">
 <div class="top-header top-header-dark">
     <div class="container">
         <div class="row">
@@ -14,14 +15,30 @@
                     <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
                     </li>
                     <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i> Hesabım
-                    <ul class="onhover-show-div">
-                        <li>
-                            <a >Giriş Yap</a>
-                        </li>
-                        <li>
-                            <a>Kayıt Ol</a>
-                        </li>
-                    </ul>
+                    @if(auth()->check())
+                        <ul class="onhover-show-div">
+                            <li>
+                                <a href="{{route('auth.login')}}">Profil</a>
+                            </li>
+                            @if(Auth::user()->roles->contains('role_id', 1))
+                                <li>
+                                    <a href="{{route('admin.index')}}">Admin Paneli</a>
+                                </li>
+                            @endif
+                            <li>
+                                <a href="{{route('auth.logout')}}">Çıkış Yap</a>
+                            </li>
+                        </ul>
+                        @else
+                        <ul class="onhover-show-div">
+                            <li>
+                                <a href="{{route('auth.login')}}">Giriş Yap</a>
+                            </li>
+                            <li>
+                                <a href="{{route('auth.register')}}">Kayıt Ol</a>
+                            </li>
+                        </ul>
+                    @endif
                     </li>
                 </ul>
             </div>
@@ -120,3 +137,4 @@
         </div>
     </div>
 </div>
+</header>

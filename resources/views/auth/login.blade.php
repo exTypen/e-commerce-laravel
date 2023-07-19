@@ -7,16 +7,17 @@
                 <div class="col-lg-6">
                     <h3>Giriş Yap</h3>
                     <div class="theme-card">
-                        <form class="theme-form">
+                        <form class="theme-form" action="{{route('auth.authenticate')}}" method="POST">
+                            @csrf
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email adresinizi girin">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email adresinizi girin">
                             </div>
                             <div class="form-group">
                                 <label for="review">Şifre</label>
                                 <input type="password" class="form-control" id="review"
-                                       placeholder="Şifrenizi girin">
-                            </div><a href="#" class="btn btn-solid">Giriş Yap</a>
+                                       placeholder="Şifrenizi girin" name="password">
+                            </div><button type="submit" class="btn btn-solid">Giriş Yap</button>
                         </form>
                     </div>
                 </div>

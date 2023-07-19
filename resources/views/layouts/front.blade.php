@@ -38,13 +38,9 @@
     @yield("css")
 </head>
 <body class="theme-color-23">
-<div class="loader_skeleton">
-    <header class="header-style-5">
 @include("layouts.front.navbar")
 @yield("content")
 @include("layouts.front.footer")
-    </header>
-</div>
 
 <script src="{{asset("assets/front/js/jquery-3.3.1.min.js")}}"></script>
 <script src="{{asset("assets/front/js/bootstrap.bundle.min.js")}}"></script>

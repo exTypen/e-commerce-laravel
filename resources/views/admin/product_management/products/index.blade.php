@@ -45,7 +45,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>
-                                        <img src="https://cdn.akakce.com/garmin/garmin-fenix-6-pro-multisport-gps-z.jpg"
+                                        <img src="{{count($product->images) ? 'http://127.0.0.1:8000/images/'.$product->images[0]->image_path : asset('assets/front/images/default.jpg')}}"
                                              data-field="image" alt="">
                                     </td>
                                     <td data-field="name">{{$product->name}}</td>
@@ -53,7 +53,7 @@
                                     <td data-field="price">₺{{$product->price}}</td>
                                     <td data-field="stock">{{$product->stock}}</td>
                                     <td>
-                                        <form id="form-for-edit-route-{{ $product->id }}" action="{{route('products.edit',[$product->id])}}" method="GET">
+                                        <form id="form-for-edit-route-{{ $product->id }}" action="{{route('products.edit',[$product->slug])}}" method="GET">
                                             @csrf
                                             <a style="cursor: pointer" onclick="document.getElementById('form-for-edit-route-{{ $product->id }}').submit();">
                                                 <i class="fa fa-edit" title="Düzenle"></i>

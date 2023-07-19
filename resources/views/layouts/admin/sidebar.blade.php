@@ -72,24 +72,19 @@
             </li>
 
             <li>
-                <a class="sidebar-header" href="javascript:void(0)">
-                    <i data-feather="dollar-sign"></i>
-                    <span>Sales</span>
+                <a class="sidebar-header">
+                    <i data-feather="clipboard"></i>
+                    <span>Tasarım</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
                 <ul class="sidebar-submenu">
                     <li>
-                        <a href="order.html">
-                            <i class="fa fa-circle"></i>Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a href="transactions.html">
-                            <i class="fa fa-circle"></i>Transactions
+                        <a href="{{route('banners.index')}}">
+                            <i class="fa fa-circle"></i>Bannerlar
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li>w
 
             <li>
                 <a class="sidebar-header" href="javascript:void(0)">

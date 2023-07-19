@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::get();
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.product_management.categories.index', compact('categories'));
     }
 
     /**
@@ -23,7 +23,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('admin.categories.category', compact('categories'));
+        return view('admin.product_management.categories.category', compact('categories'));
     }
 
     /**
@@ -52,7 +52,7 @@ class CategoryController extends Controller
     {
         $categories = Category::get();
         $category = Category::find($id);
-        return view('admin.categories.category', compact('category', 'categories'));
+        return view('admin.product_management.categories.category', compact('category', 'categories'));
     }
 
     /**

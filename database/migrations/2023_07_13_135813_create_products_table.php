@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('stock_code');
             $table->string('slug');
-            $table->string('description');
-            $table->string('short_description');
+            $table->text('description')->nullable();
+            $table->string('short_description')->nullable();
             $table->float('price');
             $table->integer('stock');
             $table->timestamps();
