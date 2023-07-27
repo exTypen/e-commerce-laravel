@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('short_description')->nullable();
             $table->float('price');
+            $table->float('discount')->nullable();
             $table->integer('stock');
             $table->timestamps();
 

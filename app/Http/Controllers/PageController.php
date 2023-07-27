@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Product;
+use App\Models\Basket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
     public function frontIndex(){
         $products = Product::get();
-        return view('front.index', compact('products'));
+        $banners = Banner::get();
+        return view('front.index', compact('products', 'banners'));
+    }
+
+    public function dashboard(){
+        $user = Auth::user();
+        return view('front.dashboard', compact('user'));
     }
 }

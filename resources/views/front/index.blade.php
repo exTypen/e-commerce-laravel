@@ -16,48 +16,26 @@
     <section class="small-section small-slider pt-res-0">
         <div class="container">
             <div class="slider-animate home-slider">
-                <div>
-                    <div class="home">
-                        <img src="{{asset("assets/images/electronics/home-slider/1.jpg")}}" alt=""
-                             class="bg-img blur-up lazyload">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="slider-contain px-padding">
-                                        <div>
-                                            <h4 class="animated" data-animation-in="fadeInUp">save 30%</h4>
-                                            <h1 class="animated" data-animation-in="fadeInUp" data-delay-in="0.3">
-                                                special price</h1><a href="#" class="btn btn-solid animated"
-                                                                     data-animation-in="fadeInUp" data-delay-in="0.5">shop
-                                                now</a>
+                @foreach($banners as $banner)
+                    <div>
+                        <div class="home">
+                            <img src="{{asset("images/".$banner->image_path)}}" alt=""
+                                 class="bg-img blur-up lazyload">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="slider-contain px-padding">
+                                            <div>
+                                                <h1 style="white-space: pre-line" class="animated" data-animation-in="fadeInUp" data-delay-in="0.1">{!! nl2br($banner->title) !!}</h1>
+                                                <a href="{{$banner->slug}}" class="btn btn-solid animated" data-animation-in="fadeInUp" data-delay-in="0.5">Göz At</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div class="home">
-                        <img src="{{asset("assets/images/electronics/home-slider/1.jpg")}}" alt=""
-                             class="bg-img blur-up lazyload">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="slider-contain px-padding">
-                                        <div>
-                                            <h4 class="animated" data-animation-in="fadeInUp">save 30%</h4>
-                                            <h1 class="animated" data-animation-in="fadeInUp" data-delay-in="0.3">
-                                                Must have</h1><a href="#" class="btn btn-solid animated"
-                                                                 data-animation-in="fadeInUp" data-delay-in="0.5">shop
-                                                now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -175,8 +153,8 @@
                                 </g>
                             </svg>
                             <div class="media-body">
-                                <h4>online payment</h4>
-                                <p>new online special festival offer</p>
+                                <h4>Çevrim İçi Ödeme</h4>
+                                <p>Güvenli bir şekilde ödeme imkanı</p>
                             </div>
                         </div>
                     </div>
@@ -210,7 +188,7 @@
                                     <a href="{{route('products.show' , [$product->slug])}}" style="cursor:pointer;">
                                         <h6>{{$product->name}}</h6>
                                     </a>
-                                    <h4>₺{{$product->price}}</h4>
+                                    <h4>₺{{isset($product->discount) ? $product->price - $product->discount : $product->price}}</h4>
                                 </div>
                             </div>
                         @endforeach

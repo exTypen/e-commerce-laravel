@@ -44,6 +44,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function fullname()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     public function roles()
     {
         return $this->hasMany(UserRole::class);

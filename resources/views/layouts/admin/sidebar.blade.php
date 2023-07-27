@@ -84,7 +84,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>w
+            </li>
 
             <li>
                 <a class="sidebar-header" href="javascript:void(0)">

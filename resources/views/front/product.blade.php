@@ -4,6 +4,27 @@
 @endsection
 
 @section("js")
+    <script>
+        var minusButton = document.querySelector('.quantity-left-minus');
+        var plusButton = document.querySelector('.quantity-right-plus');
+
+        // Input alanını seçme
+        var quantityInput = document.querySelector('.input-number');
+
+        // Arttırma düğmesine tıklama olayını ekleme
+        minusButton.addEventListener('click', function() {
+            var currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+
+        // Azaltma düğmesine tıklama olayını ekleme
+        plusButton.addEventListener('click', function() {
+            var currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+        });
+    </script>
 @endsection
 
 @section("title")
@@ -43,57 +64,59 @@
                         </div>
                     </div>
                     <div class="col-lg-6 rtl-text">
-                        <div class="product-right">
-                            <div style="margin-bottom: 10px"><span style="color: #2874f0; font-weight: bold">Marka: </span>{{$product->brand->name}}</div>
-                            <h2>{{$product->name}}</h2>
-                            <div style="margin-bottom: 10px; margin-top: -10px"><span style="color: #2874f0; font-weight: bold">Stok Kodu: </span>{{$product->stock_code}}</div>
-                            <h3 class="price-detail">₺{{$product->price}}<del>₺459.00</del><span>55% off</span></h3>
+                        <form action="{{route('baskets.store')}}" method="POST">
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                            @csrf
+                            <div class="product-right">
+                                <div style="margin-bottom: 10px"><span style="color: #2874f0; font-weight: bold">Marka: </span>{{$product->brand->name}}</div>
+                                <h2>{{$product->name}}</h2>
+                                <div style="margin-bottom: 10px; margin-top: -10px"><span style="color: #2874f0; font-weight: bold">Stok Kodu: </span>{{$product->stock_code}}</div>
+                                <h3 class="price-detail">₺{{isset($product->discount) ? $product->price - $product->discount : $product->price}}{!! nl2br(isset($product->discount) ? '<del>₺'.$product->price.'</del><span>'.round($product->discount/$product->price*100).'% indirim</span>' : '') !!}</h3>
 
-                            <div id="selectSize" class="addeffect-section product-description border-product">
-                                <h6 class="product-title">Adet</h6>
-                                <div class="qty-box">
-                                    <div class="input-group">
-                                        <span class="input-group-prepend">
-                                            <button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="fa-solid fa-angle-left"></i></button>
-                                        </span>
-                                        <input type="text" name="quantity" class="form-control input-number" value="1">
-                                        <span class="input-group-prepend">
-                                            <button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="fa-solid fa-angle-right"></i></button>
-                                        </span>
+                                <div id="selectSize" class="addeffect-section product-description border-product">
+                                    <h6 class="product-title">Adet</h6>
+                                    <div class="qty-box">
+                                        <div class="input-group">
+                                            <span style="cursor:pointer;" class="input-group-prepend">
+                                                <button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="fa-solid fa-angle-left"></i></button>
+                                            </span>
+                                            <input type="text" name="quantity" class="form-control input-number" dirname="quantity" value="1">
+                                            <span style="cursor:pointer;" class="input-group-prepend">
+                                                <button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="fa-solid fa-angle-right"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="product-buttons"><button type="submit" id="cartEffect" class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> sepete ekle</button> <a href="#" class="btn btn-solid"><i
+                                            class="fa fa-bookmark fz-16 me-2" aria-hidden="true"></i>istek listesine ekle</a></div>
+                                <div class="product-count">
+                                    <ul>
+                                        <li>
+                                            <span class="lang">5000TL üzeri kargo ücretsiz!</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                @if($product->short_description != '')
+                                    <div class="border-product">
+                                        {{$product->short_description}}
+                                    </div>
+                                @endif
+                                <div class="border-product">
+                                    <h6 class="product-title">Paylaş</h6>
+                                    <div class="product-icon">
+                                        <ul class="product-social">
+                                            <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="product-buttons"><a href="javascript:void(0)" id="cartEffect"
-                                                            class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1"
-                                                                                                               aria-hidden="true"></i> sepete ekle</a> <a href="#" class="btn btn-solid"><i
-                                        class="fa fa-bookmark fz-16 me-2" aria-hidden="true"></i>istek listesine ekle</a></div>
-                            <div class="product-count">
-                                <ul>
-                                    <li>
-                                        <span class="lang">5000TL üzeri kargo ücretsiz!</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            @if($product->short_description != '')
-                                <div class="border-product">
-                                    {{$product->short_description}}
-                                </div>
-                            @endif
-                            <div class="border-product">
-                                <h6 class="product-title">Paylaş</h6>
-                                <div class="product-icon">
-                                    <ul class="product-social">
-                                        <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

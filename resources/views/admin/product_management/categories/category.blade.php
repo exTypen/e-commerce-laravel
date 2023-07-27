@@ -45,11 +45,6 @@
                                                 </select>
                                             </div>
                                             <div class="offset-xl-3 offset-sm-4 mt-4">
-                                                @if ($errors->any())
-                                                    <div class="alert alert-danger">
-                                                        Lütfen bilgileri kontrol edin.
-                                                    </div>
-                                                @endif
                                                 <button type="submit" class="btn btn-primary">Kaydet</button>
                                             </div>
                                         </div>
