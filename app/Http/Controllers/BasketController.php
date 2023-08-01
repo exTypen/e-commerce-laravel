@@ -20,7 +20,7 @@ class BasketController extends Controller
             $baskets = Basket::where('user_id', Auth::user()->id)->get();
         }else{
             //local storage dan çekilecek
-            $baskets = \request()->session()->get('baskets');
+            $baskets = session('baskets', []);
             if ($baskets == null){
                 $baskets = array();
             }
@@ -49,19 +49,39 @@ class BasketController extends Controller
             $data['user_id'] = Auth::user()->id;
             $data['product_id'] = $request->product_id;
             $data['quantity'] = $request->quantity;
-            Basket::create($data);
-            toastr()->success('Ürün sepete eklendi', 'Başarılı');
+            if (Basket::where('user_id', $data['user_id'])->where('product_id', $data['product_id'])->count()){
+                $basket_to_update = Basket::where('user_id', $data['user_id'])->where('product_id', $data['product_id'])->first();
+                $basket_to_update->quantity = $basket_to_update->quantity + intval($data['quantity']);
+                $basket_to_update->save();
+            }else{
+                Basket::create($data);
+                toastr()->success('Ürün sepete eklendi', 'Başarılı');
+            }
             return back();
         }else{
-            $basket = \request()->session()->get('baskets');
+            $baskets = session('baskets', []);
             $data['product_id'] = $request->product_id;
             $data['quantity'] = $request->quantity;
-            $basketItem = (object)$data;
-            if ($basket == null){
-                $basket = array();
+
+            if(count(collect($baskets)->where('product_id', $request->product_id)->all())){
+                $basket_to_update = collect($baskets)->where('product_id', $request->product_id)->first();
+                $basket_to_update->quantity = $basket_to_update->quantity + intval($request->quantity);
+                $updatedBasket = [];
+                foreach ($baskets as $basket) {
+                    if ($basket->product_id != $basket_to_update->product_id) {
+                        array_push($updatedBasket, $basket);
+                    }
+                }
+                array_push($updatedBasket, $basket_to_update);
+                session(['baskets' => $updatedBasket]);
+            }else{
+                $basketItem = (object)$data;
+                if ($baskets == null){
+                    $baskets = array();
+                }
+                array_push($baskets, $basketItem);
+                session(['baskets' => $baskets]);
             }
-            array_push($basket, $basketItem);
-            $request->session()->put('baskets', $basket);
             return back();
         }
     }

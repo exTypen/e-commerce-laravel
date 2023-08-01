@@ -93,7 +93,7 @@
                                     <a href="{{route('baskets.index')}}"><img src="{{asset("assets/front/images/icon/cart.png")}}"
                                               class="img-fluid" alt=""> <i
                                             class="ti-shopping-cart"></i></a>
-                                    <span class="cart_qty_cls">102</span>
+                                    <span class="cart_qty_cls">{{Auth::user() ? Auth::user()->baskets->count() : count(session('baskets', []))}}</span>
                                 </li>
                             </ul>
                         </div>
