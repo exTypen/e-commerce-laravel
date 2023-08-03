@@ -69,9 +69,9 @@
                         <table class="table cart-table ">
                             <tfoot>
                             <tr>
-                                <td>total price :</td>
+                                <td>Toplam :</td>
                                 <td>
-                                    <h2>₺6935.00</h2>
+                                    <h2>₺{{$total_price}}</h2>
                                 </td>
                             </tr>
                             </tfoot>

@@ -19,7 +19,6 @@ class BasketController extends Controller
         if (Auth::check()){
             $baskets = Basket::where('user_id', Auth::user()->id)->get();
         }else{
-            //local storage dan çekilecek
             $baskets = session('baskets', []);
             if ($baskets == null){
                 $baskets = array();
@@ -29,7 +28,11 @@ class BasketController extends Controller
                 $basket->product = $product;
             }
         }
-        return view('front.baskets', compact('baskets'));
+        $total_price = 0;
+        foreach ($baskets as $basket){
+            $total_price += $basket->product->price * $basket->quantity;
+        }
+        return view('front.baskets', compact('baskets', 'total_price'));
     }
 
     /**
