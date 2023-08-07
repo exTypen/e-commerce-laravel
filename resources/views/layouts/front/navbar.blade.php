@@ -18,7 +18,7 @@
                     @if(auth()->check())
                         <ul class="onhover-show-div">
                             <li>
-                                <a href="{{route('auth.login')}}">Profil</a>
+                                <a href="{{route('front.profile')}}">Profil</a>
                             </li>
                             @if(Auth::user()->roles->contains('role_id', 1))
                                 <li>

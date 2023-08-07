@@ -81,7 +81,7 @@
             </div>
             <div class="row cart-buttons">
                 <div class="col-6"><a href="#" class="btn btn-solid">Alışverişe devam et</a></div>
-                <div class="col-6"><a href="#" class="btn btn-solid">Siparişi Tamamla</a></div>
+                <div class="col-6"><a href="{{route('orders.create')}}" class="btn btn-solid">Siparişi Tamamla</a></div>
             </div>
         </div>
     </section>

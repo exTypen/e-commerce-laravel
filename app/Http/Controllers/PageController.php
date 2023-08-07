@@ -16,8 +16,8 @@ class PageController extends Controller
         return view('front.index', compact('products', 'banners'));
     }
 
-    public function dashboard(){
+    public function profile(){
         $user = Auth::user();
-        return view('front.dashboard', compact('user'));
+        return view('front.profile', compact('user'));
     }
 }

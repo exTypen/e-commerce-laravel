@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\Authenticate;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'frontIndex'])->name('front.home');
-Route::get('/dashboard', [PageController::class, 'dashboard'])->name( 'front.dashboard')->middleware(Authenticate::class);
+Route::get('/profile', [PageController::class, 'profile'])->name( 'front.profile')->middleware(Authenticate::class);
 
 Route::prefix('auth')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('auth.login');
@@ -45,3 +46,4 @@ Route::prefix('admin')->middleware(IsAdmin::class)->group( function () {
     Route::resource('banners' , BannerController::class);
 });
 Route::resource('baskets' , BasketController::class);
+Route::resource('orders' , OrderController::class);
