@@ -40,7 +40,7 @@
                 <div class="checkout-form">
                     <form action="{{route('orders.store')}}" method="POST">
                         @csrf
-                        <input type="hidden" name="selectedAddressId" value="0">
+                        <input type="hidden" name="address_id" value="0">
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 col-xs-12">
                                 <div class="checkout-title">
@@ -116,7 +116,7 @@
                                                 <ul>
                                                     <li>
                                                         <div class="radio-option">
-                                                            <input type="radio" name="payment-group" id="payment-1"
+                                                            <input type="radio"  id="payment-1"
                                                                    checked="checked">
                                                             <label for="payment-1">Check Payments<span
                                                                     class="small-text">Please send a check to Store
@@ -126,7 +126,7 @@
                                                     </li>
                                                     <li>
                                                         <div class="radio-option">
-                                                            <input type="radio" name="payment-group" id="payment-2">
+                                                            <input type="radio"  id="payment-2">
                                                             <label for="payment-2">Cash On Delivery<span
                                                                     class="small-text">Please send a check to Store
                                                                     Name, Store Street, Store Town, Store State /
@@ -135,7 +135,7 @@
                                                     </li>
                                                     <li>
                                                         <div class="radio-option paypal">
-                                                            <input type="radio" name="payment-group" id="payment-3">
+                                                            <input type="radio"  id="payment-3">
                                                             <label for="payment-3">PayPal<span class="image"><img
                                                                         src="../assets/images/paypal.png"
                                                                         alt=""></span></label>
@@ -182,7 +182,7 @@
                 }
             }
 
-            document.querySelector('input[name="selectedAddressId"]').value = addressId;
+            document.querySelector('input[name="address_id"]').value = addressId;
 
         }
     </script>

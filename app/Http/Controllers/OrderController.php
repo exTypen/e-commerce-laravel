@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +35,24 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->except('_token'));
+        $data = $request->except('_token');
+        $data['user_id'] = Auth::user()->id;
+        $data['address_id'] = intval($data['address_id']);
+        $data['order_status_id'] = 1;
+        $order = Order::create($data);
+
+        foreach (Auth::user()->baskets as $basket){
+            $order_detail['order_id'] = $order->id;
+            $order_detail['product_id'] = $basket->product_id;
+            $order_detail['price'] = $basket->product->price;
+            $order_detail['quantity'] = $basket->quantity;
+            OrderDetail::create($order_detail);
+        }
+
+        $baskets = Auth::user()->baskets;
+
+        return view('front.success_checkout', compact('baskets'));
+
     }
 
     /**
