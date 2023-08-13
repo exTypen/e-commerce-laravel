@@ -36,6 +36,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max: 255',
+            'stock_code' => 'required|max: 100',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'price' => 'required',
+            'stock' => 'required'
+        ]);
         $data = $request->except('_token');
         $data['slug'] = Str::slug($data['name']);
         $data['price'] = floatval(str_replace(',', '.', $data['price']));
@@ -80,6 +88,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'name' => 'required|max: 255',
+            'stock_code' => 'required|max: 100',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'price' => 'required',
+            'stock' => 'required'
+        ]);
         $data = $request->except('_token');
         $data['slug'] = Str::slug($data['name']);
         $data['price'] = floatval(str_replace(',', '.', $data['price']));

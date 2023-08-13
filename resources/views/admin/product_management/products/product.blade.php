@@ -123,10 +123,15 @@
                                             <div class="col-xl-8 col-sm-7 description-sm">
                                                 <textarea id="editor1" name="description" cols="10" rows="4">@if(isset($product)) {{$product->description}} @endif</textarea>
                                             </div>
+
                                             <div class="offset-xl-3 offset-sm-4 mt-4">
                                                 @if ($errors->any())
                                                     <div class="alert alert-danger">
-                                                        Lütfen bilgileri kontrol edin.
+                                                        <ul>
+                                                            @foreach ($errors->all() as $error)
+                                                                <li>{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
                                                     </div>
                                                 @endif
                                                 <button type="submit" class="btn btn-primary">Kaydet</button>
@@ -134,7 +139,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                            </div>
+                                    </div>
                             </form>
 
                         </div>

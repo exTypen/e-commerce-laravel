@@ -31,6 +31,9 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max: 255'
+        ]);
         $data = $request->except('_token');
         $data['slug'] = Str::slug($data['name']);
         Brand::create($data);
@@ -60,6 +63,9 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'name' => 'required|max: 255'
+        ]);
         $data = $request->except('_token');
         $data['slug'] = Str::slug($data['name']);
         Brand::find($id)->update($data);

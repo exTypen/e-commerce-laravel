@@ -40,12 +40,22 @@
                 <div class="checkout-form">
                     <form action="{{route('orders.store')}}" method="POST">
                         @csrf
-                        <input type="hidden" name="address_id" value="0">
+                        <input type="hidden" name="address_id">
                         <div class="row">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="col-lg-6 col-sm-12 col-xs-12">
                                 <div class="checkout-title">
                                     <h3>Adres Seçin</h3>
                                 </div>
+
                                 <div class="tab-pane">
                                     <div class="row">
                                         @foreach(auth()->user()->addresses as $address)
@@ -88,7 +98,7 @@
                                         </div>
                                         <ul class="qty">
                                             @foreach($baskets as $basket)
-                                                <li>{{$basket->product->name}} × {{$basket->quantity}} <span>₺{{number_format($basket->product->price * $basket->quantity, 2, ',', '.')}}</span></li>
+                                                <li>{{$basket->product->name}} × {{$basket->quantity}} <span>₺{{number_format(isset($basket->product->discount) ? ($basket->product->price - $basket->product->discount) * $basket->quantity : $basket->product->price * $basket->quantity, 2, ',', '.')}}</span></li>
                                             @endforeach
                                         </ul>
                                         <ul class="sub-total">

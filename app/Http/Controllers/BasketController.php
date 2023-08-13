@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Basket;
 use App\Models\Product;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use MongoDB\Driver\Session;

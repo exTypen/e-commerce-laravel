@@ -80,7 +80,7 @@
                                             <span style="cursor:pointer;" class="input-group-prepend">
                                                 <button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="fa-solid fa-angle-left"></i></button>
                                             </span>
-                                            <input type="text" name="quantity" class="form-control input-number" dirname="quantity" value="1">
+                                            <input type="text" name="quantity" class="form-control input-number" value=1>
                                             <span style="cursor:pointer;" class="input-group-prepend">
                                                 <button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="fa-solid fa-angle-right"></i></button>
                                             </span>

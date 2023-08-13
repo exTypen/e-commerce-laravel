@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class OrderController extends Controller
         $baskets = Auth::user()->baskets;
         $subtotal = 0;
         foreach ($baskets as $basket){
-            $subtotal += $basket->quantity * $basket->product->price;
+            $subtotal += isset($basket->product->discount) ? ($basket->product->price - $basket->product->discount) * $basket->quantity : $basket->product->price * $basket->quantity;
         }
         return view('front.checkout', compact('baskets', 'subtotal'));
     }
@@ -35,6 +36,10 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'address_id' => 'required'
+        ]);
+        dd($request->except("_token"));
         $data = $request->except('_token');
         $data['user_id'] = Auth::user()->id;
         $data['address_id'] = intval($data['address_id']);
@@ -44,7 +49,7 @@ class OrderController extends Controller
         foreach (Auth::user()->baskets as $basket){
             $order_detail['order_id'] = $order->id;
             $order_detail['product_id'] = $basket->product_id;
-            $order_detail['price'] = $basket->product->price;
+            $order_detail['price'] = isset($basket->product->discount) ? ($basket->product->price - $basket->product->discount) : $basket->product->price;
             $order_detail['quantity'] = $basket->quantity;
             OrderDetail::create($order_detail);
         }

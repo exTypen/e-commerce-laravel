@@ -35,6 +35,15 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-xl-3 offset-sm-4 mt-4">
+                                                @if ($errors->any())
+                                                    <div class="alert alert-danger">
+                                                        <ul>
+                                                            @foreach ($errors->all() as $error)
+                                                                <li>{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
                                                 <button type="submit" class="btn btn-primary">Kaydet</button>
                                             </div>
                                         </div>

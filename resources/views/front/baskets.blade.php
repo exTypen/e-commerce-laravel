@@ -37,7 +37,7 @@
                                     {{$basket->product->name}}
                                 </td>
                                 <td>
-                                    <h2>₺{{$basket->product->price}}</h2>
+                                    <h2>₺{{isset($basket->product->discount) ? $basket->product->price - $basket->product->discount : $basket->product->price}}</h2>
                                 </td>
                                 <td>
                                     <div class="qty-box">
@@ -59,7 +59,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <h2 class="td-color">₺{{$basket->product->price * $basket->quantity}}</h2>
+                                    <h2 class="td-color">₺{{isset($basket->product->discount) ? ($basket->product->price - $basket->product->discount) * $basket->quantity : $basket->product->price * $basket->quantity}}</h2>
                                 </td>
                             </tr>
                         @endforeach
